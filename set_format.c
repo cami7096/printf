@@ -38,6 +38,8 @@ int				set_specifier(char *str, int *i)
 		specifier = POINTER;
 	else if (str[*i] == 'x' || str[*i] == 'X')
 		specifier = (str[*i] == 'x') ? HEXA_LOWER : HEXA_UPPER;
+	else if (str[*i] == 'u')
+		specifier = POINTER;
 	*i += 1;
 	return (specifier);
 }

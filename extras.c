@@ -33,8 +33,10 @@ char		*ft_itoa_base(long value, int base, int lower)
 	long	nbr;
 	char	*num;
 	char	*base_l;
+	char	*base_u;
 
-	base_l = "0123456789abcef";
+	base_l = "0123456789abcdef";
+	base_u = "0123456789ABCDEF";
 	if (value == 0)
 		return ("0");
 	nbr = (value < 0) ? (value * -1) : value;
@@ -45,7 +47,7 @@ char		*ft_itoa_base(long value, int base, int lower)
 	while (nbr)
 	{
 		num[--len] = (lower) ? base_l[nbr % base]
-		: base_l[nbr % base] - 32;
+		: base_u[nbr % base];
 		nbr /= base;
 	}
 	if (value < 0 && base == 10)

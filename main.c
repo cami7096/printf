@@ -19,6 +19,7 @@ int main(void)
 	char c = 'A';
 	char str[] = "Camilla";
 	int nbr = 904;
+	int hexa = 3459;
 	
 	printf("ft_printf                  printf\n");
 	ft_printf("%d", number);
@@ -31,4 +32,8 @@ int main(void)
 	printf("                    %s\n", str);
 	ft_printf("%o", nbr);
 	printf("			   %o\n", nbr);
+	ft_printf("%x", hexa);
+	printf("			   %x\n", hexa);
+	ft_printf("%X", hexa);
+	printf("			   %X\n", hexa);
 }
