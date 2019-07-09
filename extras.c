@@ -12,13 +12,20 @@
 
 #include "ft_printf.h"
 
-int			get_len_num_base(int num, int base)
+int			specifier(char c)
+{
+	if (c == 'd' || c == 'i' || c == 's' || c == 'c' ||
+			c == 'p' || c == 'o' || c == 'u' || c == 'x' ||
+				c == 'X' || c == 'f')
+		return (1);
+	return (0);
+}
+
+int			get_len_num_base(long long unsigned int num, int base)
 {
 	int		i;
 
 	i = 0;
-	if (num < 0 && base == 10)
-		i++;
 	while (num > 0)
 	{
 		num /= base;
@@ -27,30 +34,62 @@ int			get_len_num_base(int num, int base)
 	return (i);
 }
 
-char		*ft_itoa_base(long value, int base, int lower)
+char		*ft_uitoa_base(long long unsigned int value, int base, int lower)
 {
-	int		len;
-	long	nbr;
-	char	*num;
-	char	*base_l;
-	char	*base_u;
+	int					len;
+	char				*num;
+	char				*base_l;
+	char				*base_u;
 
 	base_l = "0123456789abcdef";
 	base_u = "0123456789ABCDEF";
 	if (value == 0)
 		return ("0");
-	nbr = (value < 0) ? (value * -1) : value;
-	len = get_len_num_base(nbr, base);
+	len = get_len_num_base(value, base);
 	if (!(num = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
 	num[len] = '\0';
-	while (nbr)
+	while (value)
 	{
-		num[--len] = (lower) ? base_l[nbr % base]
-		: base_u[nbr % base];
-		nbr /= base;
+		num[--len] = (lower) ? base_l[value % base]
+		: base_u[value % base];
+		value /= base;
 	}
-	if (value < 0 && base == 10)
-		num[0] = '-';
 	return (num);
+}
+
+int		get_float(long double nbr, int precision)
+{
+	int i;
+
+	i = 0;
+	while (i < precision)
+	{
+		nbr *= 10;
+		i++;
+	}
+	return (nbr);
+}
+
+char			*ft_llitoa(long long int n)
+{
+	char		*str;
+	int			str_len;
+	int			sign;
+
+	sign = 0;
+	str_len = get_len_num_base(n, 10);
+	if (n < 0)
+	{
+		sign = 1;;
+		str_len++;
+	}
+	if (!(str = ft_strnew(str_len)))
+		return (NULL);
+	str[--str_len] = n % 10 + '0';
+	while (n /= 10)
+		str[--str_len] = n % 10 + '0';
+	if (sign)
+		*(str + 0) = '-';
+	return (str);
 }

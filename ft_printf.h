@@ -12,14 +12,17 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+
 # define HH 1
 # define H 2
 # define LL 3
 # define LOWER_L 4
 # define UPPER_L 5
+
 # define INT 1
 # define CHAR 2
 # define STR 3
@@ -30,25 +33,36 @@
 # define HEXA_UPPER 8
 # define FLOAT 9
 # define PERCENTAGE 10
+# define SIGNED_CHAR 11
+
 # define EMPTY -1
+# define LOWER 1
+# define UPPER 0
 
 typedef struct	s_format
 {
+	int			lengh;
 	int			specifier;
 }				t_format;
 
 int				ft_printf(const char *str, ...);
 int				print_format(char *str, int *i, va_list param, int fd);
 t_format		set_format(char *str, int *i);
-int				print_int(va_list param, int fd);
-int				get_len_num_base(int num, int base);
+int				print_int(va_list param, t_format format, int fd);
+int				get_len_num_base(long long unsigned int num, int base);
 int				set_specifier(char *str, int *i);
 int				get_fd(char *str, int *i);
 int				print_char(va_list parameters, int fd);
 int				print_str(va_list param, int fd);
 int				print_hex(va_list param, int fd, int lower);
-char			*ft_itoa_base(long value, int base, int lower);
-int				print_octal(va_list param, int fd);
+int				print_octal(va_list param, t_format format, int fd);
 int				print_pointer(va_list param, int fd);
+char			*ft_uitoa_base(long long unsigned int value, int base, int lower);
+int 			print_unsigned(va_list param, t_format format, int fd);
+int				print_float(va_list param, int fd);
+int				get_float(long double nbr, int precision);
+char			*ft_llitoa(long long int n);
+int 			set_lengh(char *str, int *i);
+int				specifier(char c);
 
 #endif

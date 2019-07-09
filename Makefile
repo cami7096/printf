@@ -23,7 +23,9 @@ SOURCES     =   main.c      \
                 print_format.c \
                 set_format.c    \
                 extras.c     \
-				ft_printf.c
+				ft_printf.c  \
+				print_int.c  \
+				print_octal.c
 
 OBJECTS     =   $(SOURCES:.c=.o)
 
@@ -32,7 +34,7 @@ OBJECTS     =   $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBRARY) $(OBJECTS)
-	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h
+	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h -fsanitize=address
 	@echo && echo $(GREEN) "[√]     [Program Successfully Compiled!]" && echo
 
 %.o: %.c
