@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:37:23 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/07 15:50:29 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:39:38 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int			get_len_num_base(long long unsigned int num, int base)
 
 char		*ft_uitoa_base(long long unsigned int value, int base, int lower)
 {
-	int					len;
-	char				*num;
-	char				*base_l;
-	char				*base_u;
+	int		len;
+	char	*num;
+	char	*base_l;
+	char	*base_u;
 
 	base_l = "0123456789abcdef";
 	base_u = "0123456789ABCDEF";
@@ -58,9 +58,9 @@ char		*ft_uitoa_base(long long unsigned int value, int base, int lower)
 	return (num);
 }
 
-int		get_float(long double nbr, int precision)
+int			get_float(long double nbr, int precision)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < precision)
@@ -71,17 +71,17 @@ int		get_float(long double nbr, int precision)
 	return (nbr);
 }
 
-char			*ft_llitoa(long long int n)
+char		*ft_llitoa(long long int n)
 {
-	char		*str;
-	int			str_len;
-	int			sign;
+	char	*str;
+	int		str_len;
+	int		sign;
 
 	sign = 0;
 	str_len = get_len_num_base(n, 10);
 	if (n < 0)
 	{
-		sign = 1;;
+		sign = 1;
 		str_len++;
 	}
 	if (!(str = ft_strnew(str_len)))

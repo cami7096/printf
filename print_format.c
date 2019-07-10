@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:21:51 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/07 17:25:15 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:06:45 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	print_char(va_list param, int fd)
 
 int	print_str(va_list param, int fd)
 {
-	char 	*str;
+	char	*str;
 	int		len;
 
 	str = va_arg(param, char*);

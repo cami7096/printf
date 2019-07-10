@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_octal.c                                      :+:      :+:    :+:   */
+/*   print_base.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbernabo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 22:21:22 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/08 22:21:33 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:39:43 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	print_octal(va_list param, t_format format, int fd)
 	int					len;
 
 	if (format.lengh == LOWER_L)
-        nbr = (long long int)va_arg(param, long int);
-    else if (format.lengh == LL)
-        nbr = va_arg(param, long long int);
-    else
-	    nbr = (long long int)va_arg(param, int);
+		nbr = (long long int)va_arg(param, long int);
+	else if (format.lengh == LL)
+		nbr = va_arg(param, long long int);
+	else
+		nbr = (long long int)va_arg(param, int);
 	num = ft_uitoa_base(nbr, 8, LOWER);
 	ft_putstr_fd(num, fd);
 	len = ft_strlen(num);
@@ -37,10 +37,10 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 	int						len;
 
 	if (format.lengh == LOWER_L)
-        nbr = (long long unsigned int)va_arg(param, long unsigned int);
-    else if (format.lengh == LL)
-        nbr = va_arg(param, long long unsigned int);
-    else
+		nbr = (long long unsigned int)va_arg(param, long unsigned int);
+	else if (format.lengh == LL)
+		nbr = va_arg(param, long long unsigned int);
+	else
 		nbr = (long long unsigned int)va_arg(param, unsigned int);
 	num = ft_uitoa_base(nbr, 16, lower);
 	ft_putstr_fd(num, fd);
@@ -48,7 +48,7 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 	return (len);
 }
 
-int print_float(va_list param, t_format format, int fd)
+int	print_float(va_list param, t_format format, int fd)
 {
 	long double		nbr;
 	long long int	nbr1;

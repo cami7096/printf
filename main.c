@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/07 23:31:52 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 18:41:15 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void)
 	int nbr = 904;
 	int hexa = 345945354;
 	unsigned int num = 87584;
-	double num_float = 377.394273;
+	float num_float = 377.394273;
 	long int long_int = 384724775;
 	long long int long_long = 87528738572983;
 	long double double_num = 38742837482.32979982734823;
@@ -128,8 +128,9 @@ int main(void)
 	printf("Precision:\n");
 	printf("\nft_printf                  printf\n");
 
-	//ft_printf("%100d", number);
-	printf("                  	   %100d\n", number);
-	
+	//ft_printf("%10d", number);
+	printf("                  	   %.10d\n", number);
+	//ft_printf("%.10d", number);
+	printf("                  	   %10d\n", number);
 
 }

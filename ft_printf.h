@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/07 15:49:42 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:44:49 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_flags
 
 typedef struct	s_format
 {
-	t_flags 	flags;
+	t_flags		flags;
 	int			lengh;
 	int			specifier;
 	int			precision;
@@ -68,13 +68,16 @@ int				print_str(va_list param, int fd);
 int				print_hex(va_list param, t_format format, int fd, int lower);
 int				print_octal(va_list param, t_format format, int fd);
 int				print_pointer(va_list param, int fd);
-char			*ft_uitoa_base(long long unsigned int value, int base, int lower);
-int 			print_unsigned(va_list param, t_format format, int fd);
+char			*ft_uitoa_base(long long unsigned int value,
+										int base, int lower);
+int				print_unsigned(va_list param, t_format format, int fd);
 int				print_float(va_list param, t_format format, int fd);
 int				get_float(long double nbr, int precision);
 char			*ft_llitoa(long long int n);
-int 			set_lengh(char *str, int *i);
+int				set_lengh(char *str, int *i);
 int				specifier(char c);
 int				set_precision(char *str, int *i, va_list param);
+t_format		init_format(void);
+
 
 #endif

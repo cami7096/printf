@@ -6,22 +6,22 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:24:52 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/07 16:00:07 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:46:32 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_format		set_format(char *str, int *i, va_list param)
+t_format	set_format(char *str, int *i, va_list param)
 {
 	t_format	format;
 
+	format = init_format();
 	*i += 1;
 	if (str[*i] == '%')
 	{
 		format.specifier = PERCENTAGE;
 		*i += 1;
-		format.lengh = EMPTY;
 		return (format);
 	}
 	while (!specifier(str[*i]))
@@ -33,9 +33,9 @@ t_format		set_format(char *str, int *i, va_list param)
 	return (format);
 }
 
-int				set_specifier(char *str, int *i)
+int			set_specifier(char *str, int *i)
 {
-	int			specifier;
+	int		specifier;
 
 	specifier = EMPTY;
 	if (str[*i] == 'i' || str[*i] == 'd')
@@ -58,10 +58,10 @@ int				set_specifier(char *str, int *i)
 	return (specifier);
 }
 
-int 			set_lengh(char *str, int *i)
+int			set_lengh(char *str, int *i)
 {
-	int 		lengh;
-	int			j;
+	int		lengh;
+	int		j;
 
 	j = 0;
 	lengh = EMPTY;
@@ -85,8 +85,8 @@ int 			set_lengh(char *str, int *i)
 
 int			set_precision(char *str, int *i, va_list param)
 {
-	int 	precision;
-	int 	lengh;
+	int		precision;
+	int		lengh;
 
 	precision = EMPTY;
 	if (str[*i] != '.')
