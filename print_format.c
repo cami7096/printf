@@ -16,7 +16,7 @@ int	print_format(char *str, int *i, va_list param, int fd)
 {
 	t_format format;
 
-	format = set_format(str, i);
+	format = set_format(str, i, param);
 	if (format.specifier == INT)
 		return (print_int(param, format, fd));
 	else if (format.specifier == CHAR)
@@ -24,17 +24,17 @@ int	print_format(char *str, int *i, va_list param, int fd)
 	else if (format.specifier == STR)
 		return (print_str(param, fd));
 	else if (format.specifier == OCTAL)
-		return (print_octal(param, fd));
+		return (print_octal(param, format, fd));
 	else if (format.specifier == POINTER)
 		return (print_pointer(param, fd));
 	else if (format.specifier == HEXA_LOWER)
-		return (print_hex(param, fd, LOWER));
+		return (print_hex(param, format, fd, LOWER));
 	else if (format.specifier == HEXA_UPPER)
-		return (print_hex(param, fd, UPPER));
+		return (print_hex(param, format, fd, UPPER));
 	else if (format.specifier == UNSIGNED_INT)
 		return (print_unsigned(param, format, fd));
 	else if (format.specifier == FLOAT)
-		return (print_float(param, fd));
+		return (print_float(param, format, fd));
 	else if (format.specifier == PERCENTAGE)
 		return (write(1, "%", fd));
 	return (0);
@@ -70,42 +70,5 @@ int	print_pointer(va_list param, int fd)
 	ft_putstr_fd("0x", fd);
 	ft_putstr_fd(num, fd);
 	len = ft_strlen(num) + 2;
-	return (len);
-}
-
-int	print_hex(va_list param, int fd, int lower)
-{
-	long unsigned int	nbr;
-	char				*num;
-	int					len;
-
-	nbr = va_arg(param, long unsigned int);
-	num = ft_uitoa_base(nbr, 16, lower);
-	ft_putstr_fd(num, fd);
-	len = ft_strlen(num);
-	return (len);
-}
-
-int print_float(va_list param, int fd)
-{
-	long double		nbr;
-	long int		nbr1;
-	long double		nbr2;
-	char			*num;
-	int				len;
-
-	nbr = (long double)va_arg(param, double);
-	nbr1 = (long int)nbr;
-	num = ft_itoa(nbr1);
-	ft_putstr_fd(num, fd);
-	ft_putchar_fd('.', fd);
-	len = ft_strlen(num) + 1;
-	nbr2 = nbr - nbr1 + 1;
-	nbr1 = get_float(nbr2, 6);
-	if (get_float(nbr2, 6 + 1) % nbr1 >= 5)
-		nbr1 += 1;
-	num = ft_itoa(nbr1);
-	ft_putstr_fd((num + 1), fd);
-	len += ft_strlen(num);
 	return (len);
 }

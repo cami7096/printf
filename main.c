@@ -24,9 +24,10 @@ int main(void)
 	double num_float = 377.394273;
 	long int long_int = 384724775;
 	long long int long_long = 87528738572983;
+	long double double_num = 38742837482.32979982734823;
 	
 	printf("Specifiers:\n");
-	printf("ft_printf                  printf\n\n");
+	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);
 	printf("                  	   %%%d\n", number);
 	ft_printf("%c", c);
@@ -91,4 +92,44 @@ int main(void)
 
 	ft_printf("%lo", (unsigned long int)long_int);
 	printf("		   %lo\n", (unsigned long int)long_int);
+
+	// -------------------------------------------------
+
+	printf("\n\nHEXADECIMAL (hh / h / ll / l):\n\n");
+	ft_printf("%hhx", (unsigned char)number);
+	printf("		   	   %hhx\n", (unsigned char)number);
+	ft_printf("%hhX", (unsigned char)number);
+	printf("		   	   %hhX\n", (unsigned char)number);
+
+	ft_printf("%hx", (unsigned short int)number);
+	printf("		  	   %hx\n", (unsigned short int)number);
+	ft_printf("%hX", (unsigned short int)number);
+	printf("		       	   %hX\n", (unsigned short int)number);
+
+	ft_printf("%llx", (unsigned long long int)long_long);
+	printf("  	   	   %llx\n", (unsigned long long int)long_long);
+	ft_printf("%llX", (unsigned long long int)long_long);
+	printf("  	   	   %llX\n", (unsigned long long int)long_long);
+
+	ft_printf("%lx", (unsigned long int)long_int);
+	printf("		   %lx\n", (unsigned long int)long_int);
+	ft_printf("%lX", (unsigned long int)long_int);
+	printf("		   %lX\n", (unsigned long int)long_int);
+
+	// -------------------------------------------------
+
+	printf("\n\nFLOAT (l / L):\n\n");
+	ft_printf("%lf", (double)num_float);
+	printf("		   %lf\n", (double)num_float);
+	ft_printf("%Lf", (long double)double_num);
+	printf("	   %Lf\n", (long double)double_num);
+
+	printf("\n------------------------------------------\n\n");
+	printf("Precision:\n");
+	printf("\nft_printf                  printf\n");
+
+	//ft_printf("%100d", number);
+	printf("                  	   %100d\n", number);
+	
+
 }

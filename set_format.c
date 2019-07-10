@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_format		set_format(char *str, int *i)
+t_format		set_format(char *str, int *i, va_list param)
 {
 	t_format	format;
 
@@ -26,6 +26,7 @@ t_format		set_format(char *str, int *i)
 	}
 	while (!specifier(str[*i]))
 	{
+		format.precision = set_precision(str, i, param);
 		format.lengh = set_lengh(str, i);
 	}
 	format.specifier = set_specifier(str, i);
@@ -64,6 +65,8 @@ int 			set_lengh(char *str, int *i)
 
 	j = 0;
 	lengh = EMPTY;
+	if (str[*i] != 'h' && str[*i] != 'l' && str[*i] != 'L')
+		return (lengh);
 	if (str[*i] == 'h' && str[*i + 1] == 'h')
 		lengh = HH;
 	else if (str[*i] == 'h' && str[*i + 1] != 'h')
@@ -78,4 +81,27 @@ int 			set_lengh(char *str, int *i)
 		j = (lengh == HH || lengh == LL) ? 2 : 1;
 	*i += j;
 	return (lengh);
+}
+
+int			set_precision(char *str, int *i, va_list param)
+{
+	int 	precision;
+	int 	lengh;
+
+	precision = EMPTY;
+	if (str[*i] != '.')
+		return (precision);
+	(*i)++;
+	if (str[*i] == '*')
+	{
+		precision = va_arg(param, int);
+		(*i)++;
+	}
+	else if (ft_isdigit(str[*i]))
+	{
+		precision = ft_atoi(&str[*i]);
+		lengh = get_len_num_base(precision, 10);
+		(*i) += lengh;
+	}
+	return (precision);
 }

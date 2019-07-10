@@ -25,7 +25,7 @@ SOURCES     =   main.c      \
                 extras.c     \
 				ft_printf.c  \
 				print_int.c  \
-				print_octal.c
+				print_base.c
 
 OBJECTS     =   $(SOURCES:.c=.o)
 

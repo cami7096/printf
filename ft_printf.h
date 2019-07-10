@@ -39,30 +39,42 @@
 # define LOWER 1
 # define UPPER 0
 
+typedef struct	s_flags
+{
+	int			plus;
+	int			minus;
+	int			space;
+	int			zero;
+	int			hash;
+}				t_flags;
+
 typedef struct	s_format
 {
+	t_flags 	flags;
 	int			lengh;
 	int			specifier;
+	int			precision;
 }				t_format;
 
 int				ft_printf(const char *str, ...);
 int				print_format(char *str, int *i, va_list param, int fd);
-t_format		set_format(char *str, int *i);
+t_format		set_format(char *str, int *i, va_list param);
 int				print_int(va_list param, t_format format, int fd);
 int				get_len_num_base(long long unsigned int num, int base);
 int				set_specifier(char *str, int *i);
 int				get_fd(char *str, int *i);
 int				print_char(va_list parameters, int fd);
 int				print_str(va_list param, int fd);
-int				print_hex(va_list param, int fd, int lower);
+int				print_hex(va_list param, t_format format, int fd, int lower);
 int				print_octal(va_list param, t_format format, int fd);
 int				print_pointer(va_list param, int fd);
 char			*ft_uitoa_base(long long unsigned int value, int base, int lower);
 int 			print_unsigned(va_list param, t_format format, int fd);
-int				print_float(va_list param, int fd);
+int				print_float(va_list param, t_format format, int fd);
 int				get_float(long double nbr, int precision);
 char			*ft_llitoa(long long int n);
 int 			set_lengh(char *str, int *i);
 int				specifier(char c);
+int				set_precision(char *str, int *i, va_list param);
 
 #endif
