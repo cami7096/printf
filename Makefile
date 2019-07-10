@@ -6,7 +6,7 @@
 #    By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 20:38:15 by cbernabo          #+#    #+#              #
-#    Updated: 2019/07/09 19:40:44 by cbernabo         ###   ########.fr        #
+#    Updated: 2019/07/09 21:48:22 by cbernabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,15 @@ NAME        =   printf
 
 LIBRARY     =   libft/libft.a
 
-SOURCES     =   main.c      \
+SOURCES     =   main.c \
                 print_format.c \
-                set_format.c    \
-                extras.c     \
-				ft_printf.c  \
-				print_int.c  \
+                set_format.c \
+                extras.c \
+				ft_printf.c \
+				print_int.c \
 				print_base.c \
-				extras2.c
+				extras2.c \
+				print_float.c \
 
 OBJECTS     =   $(SOURCES:.c=.o)
 

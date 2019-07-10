@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 19:44:49 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:06:09 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int				set_lengh(char *str, int *i);
 int				specifier(char c);
 int				set_precision(char *str, int *i, va_list param);
 t_format		init_format(void);
-
+int				int_precision(int precision, int num_lengh, int fd);
+char			*precision_float(int p, long long int i, long double d);
 
 #endif

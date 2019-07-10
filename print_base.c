@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 22:21:22 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 18:39:43 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 21:48:01 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,3 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 	return (len);
 }
 
-int	print_float(va_list param, t_format format, int fd)
-{
-	long double		nbr;
-	long long int	nbr1;
-	long double		nbr2;
-	char			*num;
-	int				len;
-
-	if (format.lengh == UPPER_L)
-		nbr = va_arg(param, long double);
-	else
-		nbr = (long double)va_arg(param, double);
-	nbr1 = (long long int)nbr;
-	num = ft_llitoa(nbr1);
-	ft_putstr_fd(num, fd);
-	ft_putchar_fd('.', fd);
-	len = ft_strlen(num) + 1;
-	nbr2 = nbr - nbr1 + 1;
-	nbr1 = get_float(nbr2, 6);
-	if (get_float(nbr2, 6 + 1) % nbr1 >= 5)
-		nbr1 += 1;
-	num = ft_itoa(nbr1);
-	ft_putstr_fd((num + 1), fd);
-	len += ft_strlen(num);
-	return (len);
-}

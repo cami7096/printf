@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 18:41:15 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/09 23:07:09 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,10 @@ int main(void)
 	printf("Precision:\n");
 	printf("\nft_printf                  printf\n");
 
-	//ft_printf("%10d", number);
-	printf("                  	   %.10d\n", number);
-	//ft_printf("%.10d", number);
-	printf("                  	   %10d\n", number);
-
+	printf("                 %.0d\n", 0);
+	ft_printf("%.0d", (int)0);
+	ft_printf("%.10d", number);
+	printf("                 %.10d\n", number);
+	ft_printf("%.3f", num_float);
+	printf("                    %.3f\n", num_float);
 }
