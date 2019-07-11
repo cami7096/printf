@@ -25,7 +25,7 @@ int main(void)
 	long int long_int = 384724775;
 	long long int long_long = 87528738572983;
 	long double double_num = 38742837482.32979982734823;
-	
+
 	printf("Specifiers:\n");
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);
@@ -132,6 +132,8 @@ int main(void)
 	ft_printf("%.0d", (int)0);
 	ft_printf("%.10d", number);
 	printf("                 %.10d\n", number);
-	ft_printf("%.3f", num_float);
-	printf("                    %.3f\n", num_float);
+	ft_printf("%.2f", num_float);
+	printf("                     %.2f\n", num_float);
+	ft_printf("%.8f", 9.2);
+	printf("                   %.8f\n", 9.2);
 }

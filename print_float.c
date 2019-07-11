@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define DEFAULT_PRECISION 6
 
 int		print_float(va_list param, t_format format, int fd)
 {
@@ -24,13 +25,15 @@ int		print_float(va_list param, t_format format, int fd)
 		nbr = va_arg(param, long double);
 	else
 		nbr = (long double)va_arg(param, double);
+	if (format.precision == EMPTY)
+		format.precision = DEFAULT_PRECISION;
 	integer = (long long int)nbr;
 	num = ft_llitoa(integer);
 	ft_putstr_fd(num, fd);
 	ft_putchar_fd('.', fd);
 	len = ft_strlen(num) + 1;
 	decimal = nbr - integer + 1;
-	integer = get_float(decimal, 6);
+	integer = get_float(decimal, format.precision + 1);
 	num = precision_float(format.precision, integer, decimal);
 	ft_putstr_fd((num + 1), fd);
 	len += ft_strlen(num);
@@ -40,13 +43,22 @@ int		print_float(va_list param, t_format format, int fd)
 char	*precision_float(int p, long long int i, long double d)
 {
 	char	*num;
+	int		lengh_num;
 
+	lengh_num = get_len_num_base(i, 10);
 	if (get_float(d, p + 1) % i >= 5)
 		i += 1;
-	if (get_len_num_base(i, 10) > p)
+	if (lengh_num > p)
 	{
-		while (--p >= 0)
+		p = lengh_num - p;
+		while (--p > 0)
 			i /= 10;
+	}
+	else if (lengh_num < p)
+	{
+		while (p-- > 0)
+			i *= 10;
+		i += 1;
 	}
 	num = ft_llitoa(i);
 	return (num);

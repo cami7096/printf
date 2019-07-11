@@ -63,6 +63,7 @@ int			get_float(long double nbr, int precision)
 	int		i;
 
 	i = 0;
+
 	while (i < precision)
 	{
 		nbr *= 10;

@@ -101,6 +101,8 @@ int			set_precision(char *str, int *i, va_list param)
 	{
 		precision = ft_atoi(&str[*i]);
 		lengh = get_len_num_base(precision, 10);
+		if (lengh == 0)
+			(*i) += 1;
 		(*i) += lengh;
 	}
 	return (precision);
