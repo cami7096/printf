@@ -129,11 +129,11 @@ int main(void)
 	printf("\nft_printf                  printf\n");
 
 	printf("                 %.0d\n", 0);
-	ft_printf("%.0d", (int)0);
+	ft_printf("%.0d", 0);
 	ft_printf("%.10d", number);
 	printf("                 %.10d\n", number);
 	ft_printf("%.2f", num_float);
 	printf("                     %.2f\n", num_float);
 	ft_printf("%.8f", 9.2);
-	printf("                   %.8f\n", 9.2);
+	printf("                 %.8f\n", 9.2);
 }

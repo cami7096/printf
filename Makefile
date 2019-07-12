@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+         #
+#    By: cbernabo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/03 20:38:15 by cbernabo          #+#    #+#              #
-#    Updated: 2019/07/09 21:48:22 by cbernabo         ###   ########.fr        #
+#    Created: 2019/07/11 16:14:16 by cbernabo          #+#    #+#              #
+#    Updated: 2019/07/11 16:14:19 by cbernabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJECTS     =   $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBRARY) $(OBJECTS)
-	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h -fsanitize=address
+	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h -fsanitize=address 
 	@echo && echo $(GREEN) "[√]     [Program Successfully Compiled!]" && echo
 
 %.o: %.c
@@ -78,3 +78,4 @@ WHITE =  "\033[1;37m"
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 .PHONY: all clean fclean re nc nh na
+

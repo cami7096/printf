@@ -24,7 +24,7 @@ int		print_float(va_list param, t_format format, int fd)
 	if (format.lengh == UPPER_L)
 		nbr = va_arg(param, long double);
 	else
-		nbr = (long double)va_arg(param, double);
+		nbr = va_arg(param, double);
 	if (format.precision == EMPTY)
 		format.precision = DEFAULT_PRECISION;
 	integer = (long long int)nbr;
@@ -44,9 +44,11 @@ char	*precision_float(int p, long long int i, long double d)
 {
 	char	*num;
 	int		lengh_num;
+	int		j;
 
+	j = 0;
 	lengh_num = get_len_num_base(i, 10);
-	if (get_float(d, p + 1) % i >= 5)
+	while (get_float(d, j++ + 1) % i >= 5 && j < p)
 		i += 1;
 	if (lengh_num > p)
 	{

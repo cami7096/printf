@@ -25,7 +25,10 @@ int	print_int(va_list param, t_format format, int fd)
 	else
 		nbr = (long long int)va_arg(param, int);
 	if (format.precision == 0 && nbr == 0)
-		return (EMPTY);
+	{
+		format.specifier = EMPTY;
+		return (0);
+	}
 	num = ft_llitoa(nbr);
 	len = ft_strlen(num);
 	len += int_precision(format.precision, len, fd);

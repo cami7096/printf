@@ -45,7 +45,7 @@ int		print(char *str, int *i, va_list param, int fd)
 	{
 		len = print_format(str, i, param, fd);
 		if (len == 0)
-			*i += 1;
+			return (len);
 		else
 			num_of_written_char += len;
 	}
@@ -72,6 +72,8 @@ int			ft_printf(const char *str, ...)
 	while (str[i] != '\0')
 	{
 		num_of_written_char += print((char *)str, &i, param, fd);
+		if (num_of_written_char == 0)
+			break ;
 	}
 	va_end(param);
 	return (num_of_written_char);
