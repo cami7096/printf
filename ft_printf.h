@@ -64,7 +64,7 @@ int				get_len_num_base(long long unsigned int num, int base);
 int				set_specifier(char *str, int *i);
 int				get_fd(char *str, int *i);
 int				print_char(va_list parameters, int fd);
-int				print_str(va_list param, int fd);
+int				print_str(va_list param, int fd, t_format format);
 int				print_hex(va_list param, t_format format, int fd, int lower);
 int				print_octal(va_list param, t_format format, int fd);
 int				print_pointer(va_list param, int fd);
@@ -78,7 +78,7 @@ int				set_lengh(char *str, int *i);
 int				specifier(char c);
 int				set_precision(char *str, int *i, va_list param);
 t_format		init_format(void);
-int				int_precision(int precision, int num_lengh, int fd);
+int				print_precision(int precision, int num_lengh, int fd);
 char			*precision_float(int p, long long int i, long double d);
 
 #endif

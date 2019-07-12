@@ -22,7 +22,7 @@ int	print_format(char *str, int *i, va_list param, int fd)
 	else if (format.specifier == CHAR)
 		return (print_char(param, fd));
 	else if (format.specifier == STR)
-		return (print_str(param, fd));
+		return (print_str(param, fd, format));
 	else if (format.specifier == OCTAL)
 		return (print_octal(param, format, fd));
 	else if (format.specifier == POINTER)
@@ -46,17 +46,6 @@ int	print_char(va_list param, int fd)
 
 	c = va_arg(param, int);
 	return (write(fd, &c, 1));
-}
-
-int	print_str(va_list param, int fd)
-{
-	char	*str;
-	int		len;
-
-	str = va_arg(param, char*);
-	ft_putstr_fd(str, fd);
-	len = ft_strlen(str);
-	return (len);
 }
 
 int	print_pointer(va_list param, int fd)

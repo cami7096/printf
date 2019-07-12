@@ -28,6 +28,7 @@ SOURCES     =   main.c \
 				print_base.c \
 				extras2.c \
 				print_float.c \
+				print_str.c \
 
 OBJECTS     =   $(SOURCES:.c=.o)
 
