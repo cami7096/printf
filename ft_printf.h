@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:40:15 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:20:59 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int				print_width(int width, int num_lengh, int fd);
 int				write_float(t_format format, int fd, long double nbr);
 t_flags			set_flags(char *str, int *i);
 int				print_flags(t_flags flags, int specifier, int fd);
+int				print_minus(t_format format, char *num, int len, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:55:32 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 14:06:37 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,5 +231,21 @@ int main(void)
 	ft_printf("|%###*X|", 15, hexa);
 	printf("          |%###*X|\n", 15, hexa);
 	ft_printf("|%###*o|", 15, hexa);
-	printf("         |%###*o|\n", 15, hexa);
+	printf("          |%###*o|\n", 15, hexa);
+	ft_printf("|%-###*X|", 15, hexa);
+	printf("          |%--###*X|\n", 15, hexa);
+	ft_printf("|%-###*x|", 15, hexa);
+	printf("          |%--###*x|\n", 15, hexa);
+	ft_printf("|%--###*o|", 15, hexa);
+	printf("          |%--###*o|\n", 15, hexa);
+	ft_printf("|%--*d|", 15, 34982);
+	printf("          |%---*d|\n", 15, 34982);
+	ft_printf("|%--*u|", 15, 34982);
+	printf("          |%---*u|\n", 15, 34982);
+	ft_printf("|%--*c|", 15, 'a');
+	printf("          |%---*c|\n", 15, 'a');
+	ft_printf("|%--*s|", 15, str);
+	printf("          |%---*s|\n", 15, str);
+	ft_printf("|%--*p|", 15, &str);
+	printf("          |%---*p|\n", 15, &str);
 }

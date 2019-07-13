@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 19:40:17 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:46:47 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 14:20:45 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define TRUE 1
 #define FALSE 0
 
-t_format		init_format(void)
+t_format	init_format(void)
 {
 	t_format	format;
 
@@ -30,7 +30,7 @@ t_format		init_format(void)
 	return (format);
 }
 
-int	print_precision(int precision, int num_lengh, int fd)
+int			print_precision(int precision, int num_lengh, int fd)
 {
 	int i;
 	int char_written;
@@ -46,7 +46,7 @@ int	print_precision(int precision, int num_lengh, int fd)
 	return (char_written);
 }
 
-int	print_width(int width, int num_lengh, int fd)
+int			print_width(int width, int num_lengh, int fd)
 {
 	int i;
 	int char_written;
@@ -62,7 +62,7 @@ int	print_width(int width, int num_lengh, int fd)
 	return (char_written);
 }
 
-t_flags	set_flags(char *str, int *i)
+t_flags		set_flags(char *str, int *i)
 {
 	t_flags flags;
 
@@ -87,4 +87,15 @@ t_flags	set_flags(char *str, int *i)
 		*i += 1;
 	}
 	return (flags);
+}
+
+int			print_minus(t_format format, char *num, int len, int fd)
+{
+	len = 0;
+	len += (format.specifier == CHAR) ? 1 : ft_strlen(num);
+	len += print_flags(format.flags, format.specifier, fd);
+	ft_putstr_fd(num, fd);
+	len += print_precision(format.precision, len, fd);
+	len += print_width(format.width, len, fd);
+	return (len);
 }

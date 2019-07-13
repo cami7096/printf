@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:09:02 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 22:57:40 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:43:38 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	print_int(va_list param, t_format format, int fd)
 	char			*num;
 	int				len;
 
+	len = 0;
 	if (format.lengh == LOWER_L)
 		nbr = (long long int)va_arg(param, long int);
 	else if (format.lengh == LL)
@@ -27,6 +28,8 @@ int	print_int(va_list param, t_format format, int fd)
 	if (format.precision == 0 && nbr == 0)
 		return (0);
 	num = ft_llitoa(nbr);
+	if (format.flags.minus)
+		return (print_minus(format, num, len, fd));
 	len = ft_strlen(num);
 	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);
@@ -48,6 +51,8 @@ int	print_unsigned(va_list param, t_format format, int fd)
 	else
 		nbr = (long long unsigned int)va_arg(param, unsigned int);
 	num = ft_uitoa_base(nbr, 10, LOWER);
+	if (format.flags.minus)
+		return (print_minus(format, num, len, fd));
 	len = ft_strlen(num);
 	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);

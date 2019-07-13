@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:46:11 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:50:39 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 14:23:34 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		print_hash(int specifier, int fd)
 	int len;
 
 	len = 0;
-	if (specifier == HEXA_LOWER)
+	if (specifier == HEXA_LOWER || specifier == POINTER)
 	{
 		write(fd, "0x", 2);
 		len += 2;
@@ -30,7 +30,7 @@ int		print_hash(int specifier, int fd)
 	else if (specifier == OCTAL)
 	{
 		write(fd, "0", 1);
-		len++;
+		len += 1;
 	}
 	return (len);
 }
@@ -42,7 +42,5 @@ int		print_flags(t_flags flags, int specifier, int fd)
 	len = 0;
 	if (flags.hash)
 		len += print_hash(specifier, fd);
-	else
-		len = 0;
 	return (len);
 }
