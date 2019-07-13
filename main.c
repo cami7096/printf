@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:13:16 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:55:32 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,10 @@ int main(void)
 	printf("\n------------------------------------------\n\n");
 	printf("FLAGS:\n");
 	printf("\nft_printf                  printf\n\n");
-	ft_printf("|%###*x|", 10, hexa);
-	printf("		   |%###*x|\n", 10, hexa);
+	ft_printf("|%###*x|", 15, hexa);
+	printf("          |%###*x|\n", 15, hexa);
+	ft_printf("|%###*X|", 15, hexa);
+	printf("          |%###*X|\n", 15, hexa);
+	ft_printf("|%###*o|", 15, hexa);
+	printf("         |%###*o|\n", 15, hexa);
 }

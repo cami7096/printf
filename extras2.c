@@ -6,21 +6,23 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 19:40:17 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 19:07:51 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:46:47 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define TRUE 1
+#define FALSE 0
 
 t_format		init_format(void)
 {
 	t_format	format;
 
-	format.flags.hash = EMPTY;
-	format.flags.minus = EMPTY;
-	format.flags.plus = EMPTY;
-	format.flags.space = EMPTY;
-	format.flags.zero = EMPTY;
+	format.flags.hash = FALSE;
+	format.flags.minus = FALSE;
+	format.flags.plus = FALSE;
+	format.flags.space = FALSE;
+	format.flags.zero = FALSE;
 	format.lengh = EMPTY;
 	format.precision = EMPTY;
 	format.specifier = EMPTY;
@@ -64,24 +66,24 @@ t_flags	set_flags(char *str, int *i)
 {
 	t_flags flags;
 
-	flags.hash = EMPTY;
-	flags.minus = EMPTY;
-	flags.plus = EMPTY;
-	flags.space = EMPTY;
-	flags.zero = EMPTY;
+	flags.hash = FALSE;
+	flags.minus = FALSE;
+	flags.plus = FALSE;
+	flags.space = FALSE;
+	flags.zero = FALSE;
 	while (str[*i] == '#' || str[*i] == '-' || str[*i] == ' '
 	|| str[*i] == '0' || str[*i] == '+')
 	{
 		if (str[*i] == '#')
-			flags.hash = 1;
+			flags.hash = TRUE;
 		else if (str[*i] == '-')
-			flags.minus = 1;
+			flags.minus = TRUE;
 		else if (str[*i] == '+')
-			flags.plus = 1;
+			flags.plus = TRUE;
 		else if (str[*i] == ' ')
-			flags.space = 1;
+			flags.space = TRUE;
 		else if (str[*i] == '0')
-			flags.zero = 1;
+			flags.zero = TRUE;
 		*i += 1;
 	}
 	return (flags);

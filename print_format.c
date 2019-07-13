@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:21:51 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 18:06:45 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:36:40 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	print_format(char *str, int *i, va_list param, int fd)
 
 int	print_char(va_list param, int fd, t_format format)
 {
-	char 	c;
+	char	c;
 	int		len;
 
 	len = 1;
