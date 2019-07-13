@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 23:07:09 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:13:16 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,40 @@ int main(void)
 	printf("		   %.*x\n", 1, hexa);
 	ft_printf("%.*X", 1, hexa);
 	printf("		   %.*X\n", 1, hexa);
+
+	printf("\n------------------------------------------\n\n");
+	printf("WIDTH:\n");
+	printf("\nft_printf                  printf\n\n");
+	ft_printf("|%*d|", 10, 34982);
+	printf("               |%*d|\n", 10, 34982);
+	ft_printf("|%*d|", 1, 34982);
+	printf("                    |%*d|\n", 1, 34982);
+	ft_printf("|%*o|", 10, 34982);
+	printf("               |%*o|\n", 10, 34982);
+	ft_printf("|%*o|", 1, 34982);
+	printf("                   |%*o|\n", 1, 34982);
+	ft_printf("|%*u|", 10, 34982);
+	printf("               |%*u|\n", 10, 34982);
+	ft_printf("|%*u|", 1, 34982);
+	printf("                    |%*u|\n", 1, 34982);
+	ft_printf("|%*x|", 10, hexa);
+	printf("		   |%*x|\n", 10, hexa);
+	ft_printf("|%*X|", 1, hexa);
+	printf("		   |%*X|\n", 1, hexa);
+	ft_printf("|%*f|", 15, num_float);
+	printf("	   |%*f|\n", 15, num_float);
+	ft_printf("|%*f|", 1, num_float);
+	printf("	           |%*f|\n", 1, num_float);
+	ft_printf("|%*c|", 10, c);
+	printf("               |%*c|\n", 10, c);
+	ft_printf("|%*p|", 10, str);
+	printf("              |%*p|\n", 10, str);
+	ft_printf("|%*s|", 10, str);
+	printf("               |%*s|\n", 10, str);
+
+	printf("\n------------------------------------------\n\n");
+	printf("FLAGS:\n");
+	printf("\nft_printf                  printf\n\n");
+	ft_printf("|%###*x|", 10, hexa);
+	printf("		   |%###*x|\n", 10, hexa);
 }

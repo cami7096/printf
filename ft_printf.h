@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 22:06:09 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:08:09 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_format
 	int			lengh;
 	int			specifier;
 	int			precision;
+	int			width;
 }				t_format;
 
 int				ft_printf(const char *str, ...);
@@ -63,11 +64,11 @@ int				print_int(va_list param, t_format format, int fd);
 int				get_len_num_base(long long unsigned int num, int base);
 int				set_specifier(char *str, int *i);
 int				get_fd(char *str, int *i);
-int				print_char(va_list parameters, int fd);
+int				print_char(va_list param, int fd, t_format format);
 int				print_str(va_list param, int fd, t_format format);
 int				print_hex(va_list param, t_format format, int fd, int lower);
 int				print_octal(va_list param, t_format format, int fd);
-int				print_pointer(va_list param, int fd);
+int				print_pointer(va_list param, int fd, t_format format);
 char			*ft_uitoa_base(long long unsigned int value,
 										int base, int lower);
 int				print_unsigned(va_list param, t_format format, int fd);
@@ -80,5 +81,9 @@ int				set_precision(char *str, int *i, va_list param);
 t_format		init_format(void);
 int				print_precision(int precision, int num_lengh, int fd);
 char			*precision_float(int p, long long int i, long double d);
+int				set_width(char *str, int *i, va_list param);
+int				print_width(int width, int num_lengh, int fd);
+int				write_float(t_format format, int fd, long double nbr);
+t_flags			set_flags(char *str, int *i);
 
 #endif

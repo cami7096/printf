@@ -20,13 +20,13 @@ int	print_format(char *str, int *i, va_list param, int fd)
 	if (format.specifier == INT)
 		return (print_int(param, format, fd));
 	else if (format.specifier == CHAR)
-		return (print_char(param, fd));
+		return (print_char(param, fd, format));
 	else if (format.specifier == STR)
 		return (print_str(param, fd, format));
 	else if (format.specifier == OCTAL)
 		return (print_octal(param, format, fd));
 	else if (format.specifier == POINTER)
-		return (print_pointer(param, fd));
+		return (print_pointer(param, fd, format));
 	else if (format.specifier == HEXA_LOWER)
 		return (print_hex(param, format, fd, LOWER));
 	else if (format.specifier == HEXA_UPPER)
@@ -40,15 +40,19 @@ int	print_format(char *str, int *i, va_list param, int fd)
 	return (0);
 }
 
-int	print_char(va_list param, int fd)
+int	print_char(va_list param, int fd, t_format format)
 {
-	char c;
+	char 	c;
+	int		len;
 
+	len = 1;
 	c = va_arg(param, int);
-	return (write(fd, &c, 1));
+	len += print_width(format.width, len, fd);
+	write(fd, &c, 1);
+	return (len);
 }
 
-int	print_pointer(va_list param, int fd)
+int	print_pointer(va_list param, int fd, t_format format)
 {
 	long long unsigned int	nbr;
 	char					*num;
@@ -56,8 +60,9 @@ int	print_pointer(va_list param, int fd)
 
 	nbr = (long long unsigned int)va_arg(param, long unsigned int);
 	num = ft_uitoa_base(nbr, 16, LOWER);
+	len = ft_strlen(num) + 2;
+	len += print_width(format.width, len, fd);
 	ft_putstr_fd("0x", fd);
 	ft_putstr_fd(num, fd);
-	len = ft_strlen(num) + 2;
 	return (len);
 }

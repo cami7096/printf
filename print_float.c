@@ -16,9 +16,9 @@
 int		print_float(va_list param, t_format format, int fd)
 {
 	long double		nbr;
-	long long int	integer;
-	long double		decimal;
-	char			*num;
+	// long long int	integer;
+	// long double		decimal;
+	// char			*num;
 	int				len;
 
 	if (format.lengh == UPPER_L)
@@ -27,18 +27,41 @@ int		print_float(va_list param, t_format format, int fd)
 		nbr = va_arg(param, double);
 	if (format.precision == EMPTY)
 		format.precision = DEFAULT_PRECISION;
+	len = write_float(format, fd, nbr);
+	// integer = (long long int)nbr;
+	// num = ft_llitoa(integer);
+	// ft_putstr_fd(num, fd);
+	// ft_putchar_fd('.', fd);
+	// len = ft_strlen(num) + 1;
+	// decimal = nbr - integer + 1;
+	// integer = get_float(decimal, format.precision + 1);
+	// num = precision_float(format.precision, integer, decimal);
+	// ft_putstr_fd((num + 1), fd);
+	// len += ft_strlen(num);
+	return (len);
+}
+
+int		write_float(t_format format, int fd, long double nbr)
+{
+	long long int	integer;
+	long double		decimal;
+	char			*num;
+	char			*num_float;
+	int				len;
+	
 	integer = (long long int)nbr;
 	num = ft_llitoa(integer);
-	ft_putstr_fd(num, fd);
-	ft_putchar_fd('.', fd);
 	len = ft_strlen(num) + 1;
 	decimal = nbr - integer + 1;
 	integer = get_float(decimal, format.precision + 1);
-	num = precision_float(format.precision, integer, decimal);
-	ft_putstr_fd((num + 1), fd);
-	len += ft_strlen(num);
+	num_float = precision_float(format.precision, integer, decimal);
+	len += ft_strlen(num_float);
+	len += print_width(format.width, len, fd);
+	ft_putstr_fd(num, fd);
+	ft_putchar_fd('.', fd);
+	ft_putstr_fd((num_float + 1), fd);
 	return (len);
-}
+}		
 
 char	*precision_float(int p, long long int i, long double d)
 {

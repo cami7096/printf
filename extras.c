@@ -26,6 +26,8 @@ int			get_len_num_base(long long unsigned int num, int base)
 	int		i;
 
 	i = 0;
+	if (num == 0)
+		return (1);
 	while (num > 0)
 	{
 		num /= base;

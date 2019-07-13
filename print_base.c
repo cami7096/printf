@@ -26,6 +26,7 @@ int	print_octal(va_list param, t_format format, int fd)
 		nbr = (long long int)va_arg(param, int);
 	num = ft_uitoa_base(nbr, 8, LOWER);
 	len = ft_strlen(num);
+	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);
 	ft_putstr_fd(num, fd);
 	return (len);
@@ -45,6 +46,7 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 		nbr = (long long unsigned int)va_arg(param, unsigned int);
 	num = ft_uitoa_base(nbr, 16, lower);
 	len = ft_strlen(num);
+	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);
 	ft_putstr_fd(num, fd);
 	return (len);

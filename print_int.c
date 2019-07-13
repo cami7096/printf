@@ -28,6 +28,7 @@ int	print_int(va_list param, t_format format, int fd)
 		return (0);
 	num = ft_llitoa(nbr);
 	len = ft_strlen(num);
+	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);
 	ft_putstr_fd(num, fd);
 	return (len);
@@ -48,6 +49,7 @@ int	print_unsigned(va_list param, t_format format, int fd)
 		nbr = (long long unsigned int)va_arg(param, unsigned int);
 	num = ft_uitoa_base(nbr, 10, LOWER);
 	len = ft_strlen(num);
+	len += print_width(format.width, len, fd);
 	len += print_precision(format.precision, len, fd);
 	ft_putstr_fd(num, fd);
 	return (len);

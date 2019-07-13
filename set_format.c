@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:24:52 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 19:46:32 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:57:44 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_format	set_format(char *str, int *i, va_list param)
 	}
 	while (!specifier(str[*i]))
 	{
+		format.flags = set_flags(str, i);
+		format.width = set_width(str, i, param);
 		format.precision = set_precision(str, i, param);
 		format.lengh = set_lengh(str, i);
 	}
@@ -106,4 +108,26 @@ int			set_precision(char *str, int *i, va_list param)
 		(*i) += lengh;
 	}
 	return (precision);
+}
+
+int			set_width(char *str, int *i, va_list param)
+{
+	int		width;
+	int		lengh;
+
+	width = EMPTY;
+	if (str[*i] == '*')
+	{
+		width = va_arg(param, int);
+		*i += 1;
+	}
+	else if (ft_isdigit(str[*i]))
+	{
+		width = ft_atoi(&str[*i]);
+		lengh = get_len_num_base(width, 10);
+		*i += lengh;
+	}
+	if (str[*i] != '*' || !ft_isdigit(str[*i]))
+		return (width);
+	return (width);
 }

@@ -20,7 +20,7 @@ NAME        =   printf
 LIBRARY     =   libft/libft.a
 
 SOURCES     =   main.c \
-                print_format.c \
+				print_format.c \
                 set_format.c \
                 extras.c \
 				ft_printf.c \
@@ -79,4 +79,3 @@ WHITE =  "\033[1;37m"
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 .PHONY: all clean fclean re nc nh na
-
