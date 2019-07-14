@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:37:23 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 19:39:38 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 22:48:06 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,13 @@ char		*ft_llitoa(long long int n)
 	int		sign;
 
 	sign = 0;
-	str_len = get_len_num_base(n, 10);
+	str_len = (n < 0) ? get_len_num_base(n * -1, 10) :
+				get_len_num_base(n, 10);
 	if (n < 0)
 	{
 		sign = 1;
 		str_len++;
+		n *= -1;
 	}
 	if (!(str = ft_strnew(str_len)))
 		return (NULL);

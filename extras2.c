@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 19:40:17 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 14:20:45 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:50:31 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_format	init_format(void)
 	format.precision = EMPTY;
 	format.specifier = EMPTY;
 	format.width = EMPTY;
+	format.positive = TRUE;
 	return (format);
 }
 
@@ -89,13 +90,15 @@ t_flags		set_flags(char *str, int *i)
 	return (flags);
 }
 
-int			print_minus(t_format format, char *num, int len, int fd)
+int			print_all(t_format format, char *num, int len, int fd)
 {
-	len = 0;
-	len += (format.specifier == CHAR) ? 1 : ft_strlen(num);
-	len += print_flags(format.flags, format.specifier, fd);
-	ft_putstr_fd(num, fd);
-	len += print_precision(format.precision, len, fd);
+	if (format.flags.plus && format.positive &&
+		(format.specifier == INT || format.specifier == FLOAT))
+		len++;
+	len += ft_strlen(num);
 	len += print_width(format.width, len, fd);
+	len += print_flags(format, fd);
+	len += print_precision(format.precision, len, fd);
+	ft_putstr_fd(num, fd);
 	return (len);
 }

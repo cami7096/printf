@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:09:02 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 13:43:38 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:39:50 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ int	print_int(va_list param, t_format format, int fd)
 		nbr = (long long int)va_arg(param, int);
 	if (format.precision == 0 && nbr == 0)
 		return (0);
+	format.positive = (nbr < 0) ? 0 : 1;
 	num = ft_llitoa(nbr);
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
-	len = ft_strlen(num);
-	len += print_width(format.width, len, fd);
-	len += print_precision(format.precision, len, fd);
-	ft_putstr_fd(num, fd);
+	len += print_all(format, num, len, fd);
 	return (len);
 }
 
@@ -53,9 +51,6 @@ int	print_unsigned(va_list param, t_format format, int fd)
 	num = ft_uitoa_base(nbr, 10, LOWER);
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
-	len = ft_strlen(num);
-	len += print_width(format.width, len, fd);
-	len += print_precision(format.precision, len, fd);
-	ft_putstr_fd(num, fd);
+	len += print_all(format, num, len, fd);
 	return (len);
 }

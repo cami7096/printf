@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 21:47:02 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/09 22:18:24 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:57:59 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 int		print_float(va_list param, t_format format, int fd)
 {
 	long double		nbr;
-	// long long int	integer;
-	// long double		decimal;
-	// char			*num;
 	int				len;
 
 	if (format.lengh == UPPER_L)
@@ -27,41 +24,34 @@ int		print_float(va_list param, t_format format, int fd)
 		nbr = va_arg(param, double);
 	if (format.precision == EMPTY)
 		format.precision = DEFAULT_PRECISION;
+	format.positive = (nbr < 0) ? 0 : 1;
 	len = write_float(format, fd, nbr);
-	// integer = (long long int)nbr;
-	// num = ft_llitoa(integer);
-	// ft_putstr_fd(num, fd);
-	// ft_putchar_fd('.', fd);
-	// len = ft_strlen(num) + 1;
-	// decimal = nbr - integer + 1;
-	// integer = get_float(decimal, format.precision + 1);
-	// num = precision_float(format.precision, integer, decimal);
-	// ft_putstr_fd((num + 1), fd);
-	// len += ft_strlen(num);
 	return (len);
 }
 
 int		write_float(t_format format, int fd, long double nbr)
 {
 	long long int	integer;
-	long double		decimal;
 	char			*num;
 	char			*num_float;
+	char			*str;
 	int				len;
-	
+
+	len = (format.flags.plus) ? 1 : 0;
 	integer = (long long int)nbr;
 	num = ft_llitoa(integer);
-	len = ft_strlen(num) + 1;
-	decimal = nbr - integer + 1;
-	integer = get_float(decimal, format.precision + 1);
-	num_float = precision_float(format.precision, integer, decimal);
-	len += ft_strlen(num_float);
+	nbr = nbr - integer + 1;
+	integer = get_float(nbr, format.precision + 1);
+	num_float = precision_float(format.precision, integer, nbr);
+	str = join_float(num, num_float);
+	if (format.flags.minus)
+		return (p_minus_f(format, str, fd));
+	len += ft_strlen(str + 0);
 	len += print_width(format.width, len, fd);
-	ft_putstr_fd(num, fd);
-	ft_putchar_fd('.', fd);
-	ft_putstr_fd((num_float + 1), fd);
+	len += print_flags(format, fd);
+	ft_putstr_fd(str, fd);
 	return (len);
-}		
+}
 
 char	*precision_float(int p, long long int i, long double d)
 {
@@ -87,4 +77,25 @@ char	*precision_float(int p, long long int i, long double d)
 	}
 	num = ft_llitoa(i);
 	return (num);
+}
+
+int		p_minus_f(t_format format, char *str, int fd)
+{
+	int len;
+
+	len = ft_strlen(str);
+	len += print_flags(format, fd);
+	ft_putstr_fd(str, fd);
+	len += print_width(format.width, len, fd);
+	return (len);
+}
+
+char	*join_float(char *num, char *num_float)
+{
+	char *res;
+	char *final;
+
+	res = ft_strjoin(num, ".");
+	final = ft_strjoin(res, num_float + 1);
+	return (final);
 }

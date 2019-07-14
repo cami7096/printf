@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 14:06:37 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:51:45 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(void)
 	long long int long_long = 87528738572983;
 	long double double_num = 38742837482.32979982734823;
 
+	ft_printf("|%-+--*f|", 15, (double)34982);
 	printf("Specifiers:\n");
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);
@@ -226,6 +227,11 @@ int main(void)
 	printf("\n------------------------------------------\n\n");
 	printf("FLAGS:\n");
 	printf("\nft_printf                  printf\n\n");
+	ft_printf("|%###*f|", 15, (double)9);
+	printf("          |%###*f|\n", 15, (double)9);
+	// int size = ft_printf("|%f|",num_float);
+	// int size2 =	printf("|%f|", num_float);
+	//printf("%d\t%d\n\n", size, size2);
 	ft_printf("|%###*x|", 15, hexa);
 	printf("          |%###*x|\n", 15, hexa);
 	ft_printf("|%###*X|", 15, hexa);
@@ -248,4 +254,18 @@ int main(void)
 	printf("          |%---*s|\n", 15, str);
 	ft_printf("|%--*p|", 15, &str);
 	printf("          |%---*p|\n", 15, &str);
+	ft_printf("|%--*p|", 15, 9.2);
+	printf("          |%---*p|\n", 15, &str);
+	ft_printf("|%--###*f|", 15, (double)9);
+	printf("          |%--###*f|\n", 15, (double)9);
+	ft_printf("|%-+-###*f|", 15, (double)-9);
+	printf("          |%-+-###*f|\n", 15, (double)-9);
+	ft_printf("|%+*d|", 15, 34982);
+	printf("          |%+*d|\n", 15, 34982);
+	ft_printf("|%-+--*d|", 15, 34982);
+	printf("          |%-+---*d|\n", 15, 34982);
+	ft_printf("|%+*f|", 15, (double)34982);
+	printf("          |%+*f|\n", 15, (double)34982);
+	ft_printf("|%-+--*f|", 15, (double)34982);
+	printf("          |%-+---*f|\n", 15, (double)34982);
 }

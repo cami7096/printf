@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 12:20:59 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:40:32 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_format
 	int			specifier;
 	int			precision;
 	int			width;
+	int			positive;
 }				t_format;
 
 int				ft_printf(const char *str, ...);
@@ -85,7 +86,10 @@ int				set_width(char *str, int *i, va_list param);
 int				print_width(int width, int num_lengh, int fd);
 int				write_float(t_format format, int fd, long double nbr);
 t_flags			set_flags(char *str, int *i);
-int				print_flags(t_flags flags, int specifier, int fd);
+int				print_flags(t_format format, int fd);
 int				print_minus(t_format format, char *num, int len, int fd);
+int				p_minus_f(t_format format, char *str, int fd);
+char			*join_float(char *num, char *num_float);
+int				print_all(t_format format, char *num, int len, int fd);
 
 #endif

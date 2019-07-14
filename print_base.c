@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 22:21:22 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 13:40:22 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:43:25 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ int	print_octal(va_list param, t_format format, int fd)
 	num = ft_uitoa_base(nbr, 8, LOWER);
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
-	len += ft_strlen(num);
-	len += print_width(format.width, len, fd);
-	len += print_flags(format.flags, format.specifier, fd);
-	len += print_precision(format.precision, len, fd);
-	ft_putstr_fd(num, fd);
+	len += print_all(format, num, fd, len);
 	return (len);
 }
 
@@ -56,10 +52,6 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 	num = ft_uitoa_base(nbr, 16, lower);
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
-	len += ft_strlen(num);
-	len += print_width(format.width, len, fd);
-	len += print_flags(format.flags, format.specifier, fd);
-	len += print_precision(format.precision, len, fd);
-	ft_putstr_fd(num, fd);
+	len += print_all(format, num, len, fd);
 	return (len);
 }

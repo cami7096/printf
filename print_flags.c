@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:46:11 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 14:23:34 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:57:13 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,26 @@ int		print_hash(int specifier, int fd)
 	return (len);
 }
 
-int		print_flags(t_flags flags, int specifier, int fd)
+int		print_flags(t_format format, int fd)
 {
 	int len;
 
 	len = 0;
-	if (flags.hash)
-		len += print_hash(specifier, fd);
+	if (format.flags.hash)
+		len += print_hash(format.specifier, fd);
+	if (format.flags.plus && format.positive &&
+		(format.specifier == INT || format.specifier == FLOAT))
+		len += write(fd, "+", 1);
+	return (len);
+}
+
+int		print_minus(t_format format, char *num, int len, int fd)
+{
+	len = 0;
+	len += (format.specifier == CHAR) ? 1 : ft_strlen(num);
+	len += print_flags(format, fd);
+	ft_putstr_fd(num, fd);
+	len += print_precision(format.precision, len, fd);
+	len += print_width(format.width, len, fd);
 	return (len);
 }
