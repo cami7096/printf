@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:21:51 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 14:21:53 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:53:24 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	print_char(va_list param, int fd, t_format format)
 	c = va_arg(param, int);
 	if (format.flags.minus)
 		return (print_minus(format, &c, len, fd));
-	len += print_width(format.width, len, fd);
+	len += print_width(format, len, fd);
 	write(fd, &c, 1);
 	return (len);
 }
@@ -68,7 +68,7 @@ int	print_pointer(va_list param, int fd, t_format format)
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
 	len = ft_strlen(num) + 2;
-	len += print_width(format.width, len, fd);
+	len += print_width(format, len, fd);
 	ft_putstr_fd("0x", fd);
 	ft_putstr_fd(num, fd);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 22:21:22 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 23:43:25 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:59:55 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ int	print_octal(va_list param, t_format format, int fd)
 		nbr = va_arg(param, long long int);
 	else
 		nbr = (long long int)va_arg(param, int);
-	if (format.flags.hash && nbr != 0)
-		len += 1;
 	num = ft_uitoa_base(nbr, 8, LOWER);
+	format.positive = (nbr == 0) ? FALSE : TRUE;
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));
-	len += print_all(format, num, fd, len);
+	len = print_all(format, num, len, fd);
 	return (len);
 }
 
@@ -47,8 +46,6 @@ int	print_hex(va_list param, t_format format, int fd, int lower)
 		nbr = va_arg(param, long long unsigned int);
 	else
 		nbr = (long long unsigned int)va_arg(param, unsigned int);
-	if (format.flags.hash && nbr != 0)
-		len += 2;
 	num = ft_uitoa_base(nbr, 16, lower);
 	if (format.flags.minus)
 		return (print_minus(format, num, len, fd));

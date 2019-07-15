@@ -6,7 +6,7 @@
 #    By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/11 16:14:16 by cbernabo          #+#    #+#              #
-#    Updated: 2019/07/12 19:49:42 by cbernabo         ###   ########.fr        #
+#    Updated: 2019/07/14 19:08:54 by cbernabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SOURCES     =   main.c \
 				extras2.c \
 				print_float.c \
 				print_str.c \
-				print_flags.c
+				print_flags.c \
+				extras3.c
 
 OBJECTS     =   $(SOURCES:.c=.o)
 

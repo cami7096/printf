@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 23:40:32 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:44:48 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # define EMPTY -1
 # define LOWER 1
 # define UPPER 0
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct	s_flags
 {
@@ -83,7 +86,7 @@ t_format		init_format(void);
 int				print_precision(int precision, int num_lengh, int fd);
 char			*precision_float(int p, long long int i, long double d);
 int				set_width(char *str, int *i, va_list param);
-int				print_width(int width, int num_lengh, int fd);
+int				print_width(t_format format, int num_lengh, int fd);
 int				write_float(t_format format, int fd, long double nbr);
 t_flags			set_flags(char *str, int *i);
 int				print_flags(t_format format, int fd);
@@ -91,5 +94,7 @@ int				print_minus(t_format format, char *num, int len, int fd);
 int				p_minus_f(t_format format, char *str, int fd);
 char			*join_float(char *num, char *num_float);
 int				print_all(t_format format, char *num, int len, int fd);
+int				print_all_float(t_format format, char *str, int len, int fd);
+int				special_cases(t_format format, int result, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:39:36 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 23:51:45 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:49:29 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int main(void)
 	long long int long_long = 87528738572983;
 	long double double_num = 38742837482.32979982734823;
 
-	ft_printf("|%-+--*f|", 15, (double)34982);
 	printf("Specifiers:\n");
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);
@@ -129,38 +128,38 @@ int main(void)
 	printf("Precision:\n");
 	printf("\nft_printf                  printf\n");
 
-	// ft_printf("%.0d", 0);
-	// printf("                 %.0d\n", 0);
-	// ft_printf("%.0d", 10);
-	// printf("                 	   %.0d\n", 10);
-	// ft_printf("%.1d", 100000);
-	// printf("                 	   %.1d\n", 100000);
-	// ft_printf("%.10d", number);
-	// printf("                 %.10d\n", number);
-	// ft_printf("%.2f", num_float);
-	// printf("                     %.2f\n", num_float);
-	// ft_printf("%.8f", 9.2);
-	// printf("                 %.8f\n", 9.2);
-	// ft_printf("%.4s", str);
-	// printf("                       %.4s\n", str);
-	// ft_printf("%.15s", str);
-	// printf("		           %.15s\n", str);
-	// ft_printf("%.15u", num);
-	// printf("		   %.15u\n", num);
-	// ft_printf("%.1u", num);
-	// printf("		           %.1u\n", num);
-	// ft_printf("%.10o", nbr);
-	// printf("                 %.10o\n", nbr);
-	// ft_printf("%.1o", nbr);
-	// printf("                       %.1o\n", nbr);
-	// ft_printf("%.10x", hexa);
-	// printf("		   %.10x\n", hexa);
-	// ft_printf("%.10X", hexa);
-	// printf("		   %.10X\n", hexa);
-	// ft_printf("%.1x", hexa);
-	// printf("		   %.1x\n", hexa);
-	// ft_printf("%.1X", hexa);
-	// printf("		   %.1X\n", hexa);
+	ft_printf("%.0d", 0);
+	printf("                 %.0d\n", 0);
+	ft_printf("%.0d", 10);
+	printf("                 	   %.0d\n", 10);
+	ft_printf("%.1d", 100000);
+	printf("                 	   %.1d\n", 100000);
+	ft_printf("%.10d", number);
+	printf("                 %.10d\n", number);
+	ft_printf("%.2f", num_float);
+	printf("                     %.2f\n", num_float);
+	ft_printf("%.8f", 9.2);
+	printf("                 %.8f\n", 9.2);
+	ft_printf("%.4s", str);
+	printf("                       %.4s\n", str);
+	ft_printf("%.15s", str);
+	printf("		           %.15s\n", str);
+	ft_printf("%.15u", num);
+	printf("		   %.15u\n", num);
+	ft_printf("%.1u", num);
+	printf("		           %.1u\n", num);
+	ft_printf("%.10o", nbr);
+	printf("                 %.10o\n", nbr);
+	ft_printf("%.1o", nbr);
+	printf("                       %.1o\n", nbr);
+	ft_printf("%.10x", hexa);
+	printf("		   %.10x\n", hexa);
+	ft_printf("%.10X", hexa);
+	printf("		   %.10X\n", hexa);
+	ft_printf("%.1x", hexa);
+	printf("		   %.1x\n", hexa);
+	ft_printf("%.1X", hexa);
+	printf("		   %.1X\n", hexa);
 	ft_printf("%.*d", 0, 0);
 	printf("                 %.*d\n", 0, 0);
 	ft_printf("%.*d", 0, 10);
@@ -229,9 +228,6 @@ int main(void)
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("|%###*f|", 15, (double)9);
 	printf("          |%###*f|\n", 15, (double)9);
-	// int size = ft_printf("|%f|",num_float);
-	// int size2 =	printf("|%f|", num_float);
-	//printf("%d\t%d\n\n", size, size2);
 	ft_printf("|%###*x|", 15, hexa);
 	printf("          |%###*x|\n", 15, hexa);
 	ft_printf("|%###*X|", 15, hexa);
@@ -268,4 +264,28 @@ int main(void)
 	printf("          |%+*f|\n", 15, (double)34982);
 	ft_printf("|%-+--*f|", 15, (double)34982);
 	printf("          |%-+---*f|\n", 15, (double)34982);
+	ft_printf("|% *d|", 15, 34982);
+	printf("          |% *d|\n", 15, 34982);
+	ft_printf("|%- --*d|", 15, 34982);
+	printf("          |%- ---*d|\n", 15, 34982);
+	ft_printf("|% *f|", 15, (double)34982);
+	printf("          |% *f|\n", 15, (double)34982);
+	ft_printf("|%- --*f|", 15, (double)34982);
+	printf("          |%- ---*f|\n", 15, (double)34982);
+	ft_printf("|%0*d|", 15, 34982);
+	printf("          |%0*d|\n", 15, 34982);
+	ft_printf("|%0+*d|", 15, 34982);
+	printf("          |%0+*d|\n", 15, 34982);
+	ft_printf("|%+0*.7f|", 15, (double)34982);
+	printf("          |%+0*.7f|\n", 15, (double)34982);
+	ft_printf("|%+###0*.7f|", 15, (double)-9);
+	printf("          |%+##0#*.7f|\n", 15, (double)-9);
+	ft_printf("|%0###*X|", 15, hexa);
+	printf("          |%00###*X|\n", 15, hexa);
+	ft_printf("|%0###*x|", 15, hexa);
+	printf("          |%0###*x|\n", 15, hexa);
+	ft_printf("|%000###*o|", 15, hexa);
+	printf("          |%000###*o|\n", 15, hexa);
+	ft_printf("|%0*u|", 15, 34982);
+	printf("          |%0*u|\n", 15, 34982);
 }

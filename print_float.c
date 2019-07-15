@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 21:47:02 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 23:57:59 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:23:45 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int		write_float(t_format format, int fd, long double nbr)
 	char			*str;
 	int				len;
 
-	len = (format.flags.plus) ? 1 : 0;
+	len = (format.flags.plus && format.positive) ? 1 : 0;
+	if (format.flags.space && !format.flags.plus)
+		len++;
 	integer = (long long int)nbr;
 	num = ft_llitoa(integer);
 	nbr = nbr - integer + 1;
@@ -46,56 +48,37 @@ int		write_float(t_format format, int fd, long double nbr)
 	str = join_float(num, num_float);
 	if (format.flags.minus)
 		return (p_minus_f(format, str, fd));
-	len += ft_strlen(str + 0);
-	len += print_width(format.width, len, fd);
-	len += print_flags(format, fd);
-	ft_putstr_fd(str, fd);
+	len += print_all_float(format, str, len, fd);
 	return (len);
-}
-
-char	*precision_float(int p, long long int i, long double d)
-{
-	char	*num;
-	int		lengh_num;
-	int		j;
-
-	j = 0;
-	lengh_num = get_len_num_base(i, 10);
-	while (get_float(d, j++ + 1) % i >= 5 && j < p)
-		i += 1;
-	if (lengh_num > p)
-	{
-		p = lengh_num - p;
-		while (--p > 0)
-			i /= 10;
-	}
-	else if (lengh_num < p)
-	{
-		while (p-- > 0)
-			i *= 10;
-		i += 1;
-	}
-	num = ft_llitoa(i);
-	return (num);
 }
 
 int		p_minus_f(t_format format, char *str, int fd)
 {
 	int len;
 
-	len = ft_strlen(str);
+	len = 0;
+	len += ft_strlen(str);
 	len += print_flags(format, fd);
 	ft_putstr_fd(str, fd);
-	len += print_width(format.width, len, fd);
+	len += print_width(format, len, fd);
 	return (len);
 }
 
-char	*join_float(char *num, char *num_float)
+int		print_all_float(t_format format, char *str, int len, int fd)
 {
-	char *res;
-	char *final;
+	int start;
 
-	res = ft_strjoin(num, ".");
-	final = ft_strjoin(res, num_float + 1);
-	return (final);
+	start = 0;
+	if (format.flags.zero && !format.positive)
+	{
+		ft_putchar_fd(str[0], fd);
+		start = 1;
+	}
+	if (format.flags.zero && format.flags.plus && format.positive)
+		write(fd, "+", 1);
+	len += ft_strlen(str);
+	len += print_width(format, len, fd);
+	len += print_flags(format, fd);
+	ft_putstr_fd(&str[start], fd);
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 21:47:02 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/13 14:36:31 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:55:10 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		print_str(va_list param, int fd, t_format format)
 	if (format.flags.minus)
 		return (print_minus(format, str, len, fd));
 	len = (format.precision == EMPTY) ? str_len : format.precision;
-	len += print_width(format.width, len, fd);
+	len += print_width(format, len, fd);
 	if (format.precision != EMPTY && format.precision < str_len)
 		ft_putnstr(str, format.precision, fd);
 	else
