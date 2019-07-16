@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:11:35 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/14 20:44:48 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:04:45 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ char			*join_float(char *num, char *num_float);
 int				print_all(t_format format, char *num, int len, int fd);
 int				print_all_float(t_format format, char *str, int len, int fd);
 int				special_cases(t_format format, int result, int fd);
+int				print_percentage(t_format format, int fd);
 
 #endif

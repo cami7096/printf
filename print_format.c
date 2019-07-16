@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:21:51 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/14 14:53:24 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:06:37 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	print_format(char *str, int *i, va_list param, int fd)
 	else if (format.specifier == FLOAT)
 		return (print_float(param, format, fd));
 	else if (format.specifier == PERCENTAGE)
-		return (write(1, "%", fd));
+		return (print_percentage(format, fd));
 	return (0);
 }
 
@@ -72,4 +72,18 @@ int	print_pointer(va_list param, int fd, t_format format)
 	ft_putstr_fd("0x", fd);
 	ft_putstr_fd(num, fd);
 	return (len);
+}
+
+int		print_percentage(t_format format, int fd)
+{
+	int		i;
+	char	c;
+
+	i = 1;
+	c = '%';
+	if (format.flags.minus)
+		return (print_minus(format, &c, i, fd));
+	i += print_width(format, i, fd);
+	write(fd, &c, 1);
+	return (i);
 }

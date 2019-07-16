@@ -5,22 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/11 16:14:16 by cbernabo          #+#    #+#              #
-#    Updated: 2019/07/14 19:08:54 by cbernabo         ###   ########.fr        #
+#    Created: 2019/02/21 16:39:57 by cbernabo          #+#    #+#              #
+#    Updated: 2019/07/15 20:13:12 by cbernabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC          =   gcc
-CFLAGS      =   -Wall -Wextra -Werror -g
+NAME = libftprintf.a
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-NAME        =   printf
-
-LIBRARY     =   libft/libft.a
-
-SOURCES     =   main.c \
-				print_format.c \
+SRC = 			print_format.c \
                 set_format.c \
                 extras.c \
 				ft_printf.c \
@@ -30,54 +22,109 @@ SOURCES     =   main.c \
 				print_float.c \
 				print_str.c \
 				print_flags.c \
-				extras3.c
+				extras3.c \
+				libft/*.c
 
-OBJECTS     =   $(SOURCES:.c=.o)
+OBJECTS = *.o \
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+HEADER = libft/libft.h \
+			ft_printf.h
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(LIBRARY) $(OBJECTS)
-	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h -fsanitize=address 
-	@echo && echo $(GREEN) "[√]     [Program Successfully Compiled!]" && echo
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo $(WHITE) "Compiling => " $<
-
-$(LIBRARY):
-	@make -C libft/
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-DEL  =  /bin/rm -rf
+$(NAME):
+	gcc -Wall -Wextra -Werror -c $(SRC) -I $(HEADER)
+		ar rc $(NAME) $(OBJECTS)
+		ranlib $(NAME)
 
 clean:
-	@$(DEL) $(shell find . -name '*.[oa]')
+	/bin/rm -f *.o
 
 fclean: clean
-	@$(DEL) $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+# # **************************************************************************** #
+# #                                                                              #
+# #                                                         :::      ::::::::    #
+# #    Makefile                                           :+:      :+:    :+:    #
+# #                                                     +:+ +:+         +:+      #
+# #    By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+         #
+# #                                                 +#+#+#+#+#+   +#+            #
+# #    Created: 2019/07/11 16:14:16 by cbernabo          #+#    #+#              #
+# #    Updated: 2019/07/14 19:08:54 by cbernabo         ###   ########.fr        #
+# #                                                                              #
+# # **************************************************************************** #
 
-nc:
-	@echo && echo $(GREEN) "Checking Norme -- Source Files:" && echo $(WHITE);
-	@norminette $(shell find . -name '*.c')
+# CC          =   gcc
+# CFLAGS      =   -Wall -Wextra -Werror -g
 
-nh:
-	@echo && echo $(GREEN) "Checking Norme -- Header Files:" && echo $(WHITE);
-	@norminette $(shell find . -name '*.h')
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-na: nh nc
+# NAME        =   printf
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# LIBRARY     =   libft/libft.a
 
-GREEN =  "\033[1;32m"
-WHITE =  "\033[1;37m"
+# SOURCES     =   main.c \
+# 				print_format.c \
+#                 set_format.c \
+#                 extras.c \
+# 				ft_printf.c \
+# 				print_int.c \
+# 				print_base.c \
+# 				extras2.c \
+# 				print_float.c \
+# 				print_str.c \
+# 				print_flags.c \
+# 				extras3.c
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# OBJECTS     =   $(SOURCES:.c=.o)
 
-.PHONY: all clean fclean re nc nh na
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+
+# all: $(NAME)
+
+# $(NAME): $(LIBRARY) $(OBJECTS)
+# 	@$(CC) $(CFLAGS) $^ -o $@ -I ft_printf.h -fsanitize=address 
+# 	@echo && echo $(GREEN) "[√]     [Program Successfully Compiled!]" && echo
+
+# %.o: %.c
+# 	@$(CC) $(CFLAGS) -c $< -o $@
+# 	@echo $(WHITE) "Compiling => " $<
+
+# $(LIBRARY):
+# 	@make -C libft/
+
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# DEL  =  /bin/rm -rf
+
+# clean:
+# 	@$(DEL) $(shell find . -name '*.[oa]')
+
+# fclean: clean
+# 	@$(DEL) $(NAME)
+
+# re: fclean all
+
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+
+# nc:
+# 	@echo && echo $(GREEN) "Checking Norme -- Source Files:" && echo $(WHITE);
+# 	@norminette $(shell find . -name '*.c')
+
+# nh:
+# 	@echo && echo $(GREEN) "Checking Norme -- Header Files:" && echo $(WHITE);
+# 	@norminette $(shell find . -name '*.h')
+
+# na: nh nc
+
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# GREEN =  "\033[1;32m"
+# WHITE =  "\033[1;37m"
+
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# .PHONY: all clean fclean re nc nh na

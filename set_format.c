@@ -6,7 +6,7 @@
 /*   By: cbernabo <cbernabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 20:24:52 by cbernabo          #+#    #+#             */
-/*   Updated: 2019/07/12 18:57:44 by cbernabo         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:09:05 by cbernabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ t_format	set_format(char *str, int *i, va_list param)
 
 	format = init_format();
 	*i += 1;
-	if (str[*i] == '%')
-	{
-		format.specifier = PERCENTAGE;
-		*i += 1;
-		return (format);
-	}
 	while (!specifier(str[*i]))
 	{
 		format.flags = set_flags(str, i);
@@ -56,6 +50,8 @@ int			set_specifier(char *str, int *i)
 		specifier = UNSIGNED_INT;
 	else if (str[*i] == 'f')
 		specifier = FLOAT;
+	else if (str[*i] == '%')
+		specifier = PERCENTAGE;
 	*i += 1;
 	return (specifier);
 }
