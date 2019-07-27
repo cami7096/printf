@@ -73,3 +73,13 @@ int		special_cases(t_format format, int result, int fd)
 		result++;
 	return (result);
 }
+
+int		ft_putnchar_fd(char *str, int fd, int precision)
+{
+	int i;
+
+	i = -1;
+	while (++i < precision)
+		ft_putchar_fd(str[i], fd);
+	return (precision);
+}

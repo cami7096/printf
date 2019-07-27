@@ -29,10 +29,13 @@ int		print_str(va_list param, int fd, t_format format)
 
 	len = 0;
 	str = va_arg(param, char*);
+	if (str == NULL)
+		str = ft_strdup("(null)");
 	str_len = ft_strlen(str);
 	if (format.flags.minus)
 		return (print_minus(format, str, len, fd));
-	len = (format.precision == EMPTY) ? str_len : format.precision;
+	len = (format.precision == EMPTY || format.precision > str_len)
+		? str_len : format.precision;
 	len += print_width(format, len, fd);
 	if (format.precision != EMPTY && format.precision < str_len)
 		ft_putnstr(str, format.precision, fd);

@@ -25,7 +25,9 @@ int main(void)
 	long int long_int = 384724775;
 	long long int long_long = 87528738572983;
 	long double double_num = 38742837482.32979982734823;
+	//char s_hidden[] = "hi low\0don't print me lol\0";
 
+	ft_printf("%-05%");
 	printf("Specifiers:\n");
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);

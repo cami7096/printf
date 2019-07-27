@@ -97,5 +97,6 @@ int				print_all(t_format format, char *num, int len, int fd);
 int				print_all_float(t_format format, char *str, int len, int fd);
 int				special_cases(t_format format, int result, int fd);
 int				print_percentage(t_format format, int fd);
+int				ft_putnchar_fd(char *str, int fd, int precision);
 
 #endif

@@ -24,6 +24,14 @@ t_format	set_format(char *str, int *i, va_list param)
 		format.width = set_width(str, i, param);
 		format.precision = set_precision(str, i, param);
 		format.lengh = set_lengh(str, i);
+		if (format.width == EMPTY && format.precision == EMPTY &&
+		format.lengh == EMPTY && format.flags.minus == FALSE &&
+		format.flags.plus == FALSE && format.flags.hash == FALSE &&
+		format.flags.space == FALSE && format.flags.zero == FALSE)
+		{
+			format.specifier = EMPTY;
+			return (format);
+		}
 	}
 	format.specifier = set_specifier(str, i);
 	return (format);

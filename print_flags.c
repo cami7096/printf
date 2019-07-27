@@ -61,10 +61,16 @@ int		print_flags(t_format format, int fd)
 int		print_minus(t_format format, char *num, int len, int fd)
 {
 	len = 0;
-	len += (format.specifier == CHAR) ? 1 : ft_strlen(num);
+	len += (format.specifier == CHAR || format.specifier == PERCENTAGE)
+	? 1 : ft_strlen(num);
 	len += print_flags(format, fd);
-	ft_putstr_fd(num, fd);
-	len += print_precision(format.precision, len, fd);
+	if (format.specifier == STR && format.precision < (int)ft_strlen(num)
+		&& format.precision != EMPTY)
+		len = ft_putnchar_fd(num, fd, format.precision);
+	else
+		ft_putstr_fd(num, fd);
+	if (format.specifier != CHAR && format.specifier != STR)
+		len += print_precision(format.precision, len, fd);
 	len += print_width(format, len, fd);
 	return (len);
 }
