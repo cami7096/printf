@@ -58,7 +58,7 @@ int			print_width(t_format format, int num_lengh, int fd)
 	{
 		while (--i >= num_lengh)
 		{
-			if (format.flags.zero)
+			if (format.flags.zero && !format.flags.minus)
 				ft_putchar_fd('0', fd);
 			else
 				ft_putchar_fd(' ', fd);

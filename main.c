@@ -23,11 +23,10 @@ int main(void)
 	unsigned int num = 87584;
 	float num_float = 377.394273;
 	long int long_int = 384724775;
-	long long int long_long = 87528738572983;
+	long long int long_long = 8752873857298;
 	long double double_num = 38742837482.32979982734823;
-	//char s_hidden[] = "hi low\0don't print me lol\0";
 
-	ft_printf("%-05%");
+	ft_printf("%5s", "goes over");
 	printf("Specifiers:\n");
 	printf("\nft_printf                  printf\n\n");
 	ft_printf("%%%d", number);

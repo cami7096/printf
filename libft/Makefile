@@ -25,7 +25,7 @@ SRC = ft_lstiter.c ft_putendl_fd.c ft_strdup.c ft_strnstr.c \
 	  ft_itoa.c ft_memset.c ft_strclr.c ft_strncmp.c \
 	  ft_lstadd.c ft_putchar.c ft_strcmp.c ft_strncpy.c \
 	  ft_lstdel.c ft_putchar_fd.c ft_strcpy.c ft_strnequ.c \
-	  ft_lstdelone.c ft_putendl.c ft_strdel.c ft_strnew.c ft_spliter.c 
+	  ft_lstdelone.c ft_putendl.c ft_strdel.c ft_strnew.c ft_spliter.c
 
 OBJECTS = ft_lstiter.o ft_putendl_fd.o ft_strdup.o ft_strnstr.o \
 	  ft_lstmap.o ft_putnbr.o ft_strequ.o ft_strrchr.o \

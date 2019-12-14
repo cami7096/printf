@@ -32,6 +32,8 @@ int		print_str(va_list param, int fd, t_format format)
 	if (str == NULL)
 		str = ft_strdup("(null)");
 	str_len = ft_strlen(str);
+	// if (format.width != EMPTY && format.width < str_len)
+	// 	return (ft_putnchar_fd(str, fd, format.width));
 	if (format.flags.minus)
 		return (print_minus(format, str, len, fd));
 	len = (format.precision == EMPTY || format.precision > str_len)
